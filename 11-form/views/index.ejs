@@ -29,29 +29,41 @@
         이름 <input type="text" name="name">
         <fieldset>
             <legend>성별</legend>
-            <input type="radio" name="man"> 남자
-            <input type="radio" name="woman"> 여자
+            <input type="radio" value="man" name="sex"> 남자
+            <input type="radio" value="woman" name="sex"> 여자
         </fieldset>
         <fieldset>
             <legend>생년월일</legend>
-            <select name="year">
-                <option value="2010">2010</option>
+            <select name="year" id="year">
+                <%for(let i=1970; i < 2024; i++){%>
+                    <option value="<%= i%>">
+                        <%= i%>
+                    </option>
+                    <%}%>
             </select>
             년
-            <select name="month">
-                <option value="1">1</option>
+            <select name="month" id="month">
+                <%for(let i=1; i < 13; i++){%>
+                    <option value="<%= i%>">
+                        <%= i%>
+                    </option>
+                    <%}%>
             </select>
             월
-            <select name="day">
-                <option value="1">1</option>
+            <select name="date" id="date">
+                <%for(let i=1; i < 32; i++){%>
+                    <option value="<%= i%>">
+                        <%= i%>
+                    </option>
+                    <%}%>
             </select>
             일
         </fieldset>
         <fieldset>
             <legend>관심사</legend>
-            <input type="checkbox" name="trip"> 여행
-            <input type="checkbox" name="fashion"> 패션
-            <input type="checkbox" name="food"> 음식
+            <input type="checkbox" value="trip" name="interest"> 여행
+            <input type="checkbox" value="fashion" name="interest"> 패션
+            <input type="checkbox" value="food" name="interest"> 음식
         </fieldset>
         <button>회원가입</button>
     </form>
