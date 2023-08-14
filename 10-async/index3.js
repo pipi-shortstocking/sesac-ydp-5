@@ -62,31 +62,110 @@
 // printItems();
 
 ///////////////////////////////////////////
-function goMart() {
-    console.log('마트에 가서 어떤 음료를 살지 고민한다.');
-}
+// function goMart() {
+//     console.log('마트에 가서 어떤 음료를 살지 고민한다.');
+// }
 
-function pickDrink() {
-    return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-            console.log('고민 끝!!');
-            product = '제로 콜라';
-            price = 2000;
-            resolve();
-        }, 3000);
-    })
-}
+// function pickDrink() {
+//     return new Promise(function (resolve, reject) {
+//         setTimeout(function () {
+//             console.log('고민 끝!!');
+//             product = '제로 콜라';
+//             price = 2000;
+//             resolve();
+//         }, 3000);
+//     })
+// }
 
-function pay() {
-    console.log(`상품명: ${product}, 가격: ${price}`);
-}
+// function pay() {
+//     console.log(`상품명: ${product}, 가격: ${price}`);
+// }
 
-async function exec() {
-    goMart();
-    await pickDrink();
-    pay();
-}
+// async function exec() {
+//     goMart();
+//     await pickDrink();
+//     pay();
+// }
 
-let product;
-let price;
-exec();
+// let product;
+// let price;
+// exec();
+
+
+// 실습 Callback -> Promise
+// function call(name) {
+//     return new Promise(function (resolve, reject) {
+//         setTimeout(function () {
+//             console.log(name);
+//             resolve(name);
+//         }, 1000);
+//     });
+// }
+
+// function back() {
+//     return new Promise(function (resolve, reject) {
+//         setTimeout(function () {
+//             console.log('back');
+//             resolve('back');
+//         }, 1000);
+//     });
+// }
+
+// function hell() {
+//     return new Promise(function (resolve, reject) {
+//         setTimeout(function () {
+//             resolve('callback hell');
+//         }, 1000);
+//     });
+// }
+
+// call('kim')
+//     .then(function (name) {
+//         console.log(name + ' 반가워');
+//         return back();
+//     })
+//     .then(function (txt) {
+//         console.log(txt + ' 을 실행했구나');
+//         return hell();
+//     })
+//     .then(function (message) {
+//         console.log('여기는 ' + message)
+//     })
+
+// 실습 Promise -> async/await
+// function call(name) {
+//     return new Promise(function (resolve, reject) {
+//         setTimeout(function () {
+//             console.log(name);
+//             resolve(name);
+//         }, 1000);
+//     });
+// }
+
+// function back() {
+//     return new Promise(function (resolve, reject) {
+//         setTimeout(function () {
+//             console.log('back');
+//             resolve('back');
+//         }, 1000);
+//     });
+// }
+
+// function hell() {
+//     return new Promise(function (resolve, reject) {
+//         setTimeout(function () {
+//             resolve('callback hell');
+//         }, 1000);
+//     });
+// }
+
+// async function exec() {
+//     let name = await call('kim');
+//     console.log(name + ' 반가워');
+//     let txt = await back();
+//     console.log(txt + '을 실행했구나');
+//     let message = await hell();
+//     console.log('여기는 ' + message);
+// }
+
+// exec();
