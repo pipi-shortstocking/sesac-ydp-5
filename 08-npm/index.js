@@ -9,7 +9,7 @@ const server = http.createServer(function (request, response) {
 
   try {
     // html 파일 불러오기
-    const data = fs.readFileSync('./index2.html');
+    const data = fs.readFileSync('./index.html');
     response.writeHead(200, { 'content-type': 'text/html; charset=utf8' });
     response.write(data);
     response.end();
