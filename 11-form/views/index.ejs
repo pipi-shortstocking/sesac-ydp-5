@@ -1,72 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>폼</title>
-</head>
+  </head>
 
-<body>
-    <!-- <h1>
-        <%= title %>
-    </h1>
-    <h2>Get 요청</h2>
+  <body>
+    <h1><%= title %></h1>
+    <!-- <h2>Get 요청</h2>
     <form action="/getForm" method="get">
-        <input type="text" name="id" placeholder="ID">
-        <input type="password" name="pw" placeholder="PW">
-        <button>제출</button>
+      <input
+        type="text"
+        name="id"
+        placeholder="ID는 최소 3글자"
+        required
+        minlength="3"
+      />
+      <input
+        type="password"
+        name="pw"
+        placeholder="PW는 최소 4글자"
+        required
+        minlength="4"
+      />
+      <input type="email" name="email" placeholder="EMAIL은 필수값" required />
+      <input type="number" name="grade" placeholder="GRADE" />
+      <button>제출</button>
     </form>
-    <h2>Post 요청</h2>
-    <form action="/postForm" method="post">
-        <input type="text" name="id" placeholder="ID">
-        <input type="password" name="pw" placeholder="PW">
-        <button>제출</button>
+
+    <h2>Post 요청</h2> -->
+    <!-- required 속성 : 폼 요소에 반드시 들어가야하는지 여부를 결정 -->
+    <!-- pattern 속성 : 폼 요소에 값 입력되었을 때 그 입력된 값에 대한 검증을 의미 -->
+    <!-- <form action="/postForm" method="post">
+      <input
+        type="text"
+        name="id"
+        placeholder="ID"
+        pattern="^([a-zA-Z0-9가-힣]){4,}$"
+        title="아이디는 대소문자, 한글, 숫자로 구성된 4글자 이상의 문자여야 합니다."
+      />
+      <input
+        type="password"
+        name="pw"
+        placeholder="PW"
+        pattern="^([a-z0-9]){8,12}$"
+        title="비밀번호는 영어 소문자와 숫자로 구성된 8자리 이상 12자리 이하의 문자여야 합니다."
+      />
+      <button>제출</button>
     </form> -->
 
-    <!-- 실습 get으로 정보 받기 -->
-    <form action="/getForm" method="get">
-        이름 <input type="text" name="name">
-        <fieldset>
-            <legend>성별</legend>
-            <input type="radio" value="man" name="sex"> 남자
-            <input type="radio" value="woman" name="sex"> 여자
-        </fieldset>
-        <fieldset>
-            <legend>생년월일</legend>
-            <select name="year" id="year">
-                <%for(let i=1970; i < 2024; i++){%>
-                    <option value="<%= i%>">
-                        <%= i%>
-                    </option>
-                    <%}%>
-            </select>
-            년
-            <select name="month" id="month">
-                <%for(let i=1; i < 13; i++){%>
-                    <option value="<%= i%>">
-                        <%= i%>
-                    </option>
-                    <%}%>
-            </select>
-            월
-            <select name="date" id="date">
-                <%for(let i=1; i < 32; i++){%>
-                    <option value="<%= i%>">
-                        <%= i%>
-                    </option>
-                    <%}%>
-            </select>
-            일
-        </fieldset>
-        <fieldset>
-            <legend>관심사</legend>
-            <input type="checkbox" value="trip" name="interest"> 여행
-            <input type="checkbox" value="fashion" name="interest"> 패션
-            <input type="checkbox" value="food" name="interest"> 음식
-        </fieldset>
-        <button>회원가입</button>
-    </form>
-</body>
+    <!-- 실습1. get으로 정보 받기 -->
+    <!-- <form action="/getForm" method="get">
+            <label>이름</label>
+      <input type="text" name="name" />
+      <fieldset>
+        <legend>성별</legend>
+        <input type="radio" value="male" name="sex" />
+        <label>남자</label>
+        <input type="radio" value="female" name="sex" />
+        <label>여자</label>
+      </fieldset>
+      <fieldset>
+        <legend>생년월일</legend>
+        <select name="year" id="year">
+          <%for(let i=1970; i < 2024; i++){%>
+          <option value="<%= i%>"><%= i%></option>
+          <%}%>
+        </select>
+        <label for="year">년</label>
+        <select name="month" id="month">
+          <%for(let i=1; i < 13; i++){%>
+          <option value="<%= i%>"><%= i%></option>
+          <%}%>
+        </select>
+        <label for="month">월</label>
+        <select name="date" id="date">
+          <%for(let i=1; i < 32; i++){%>
+          <option value="<%= i%>"><%= i%></option>
+          <%}%>
+        </select>
+        <label for="date">일</label>
+      </fieldset>
+      <fieldset>
+        <legend>관심사</legend>
+        <input type="checkbox" value="trip" name="interest" />
+        <label>여행</label>
+        <input type="checkbox" value="fashion" name="interest" />
+        <label>패션</label>
+        <input type="checkbox" value="food" name="interest" />
+        <label>음식</label>
+      </fieldset>
+      <button>회원가입</button>
+    </form> -->
 
+    <!-- 실습2. post로 정보 받기 -->
+    <form action="/postForm" method="post">
+      <label>이름</label>
+      <input type="text" name="name" />
+      <fieldset>
+        <legend>성별</legend>
+        <input type="radio" value="male" name="sex" />
+        <label>남자</label>
+        <input type="radio" value="female" name="sex" />
+        <label>여자</label>
+      </fieldset>
+      <br />
+      <fieldset>
+        <legend>생년월일</legend>
+        <select name="year" id="year">
+          <%for(let i=1970; i < 2024; i++){%>
+          <option value="<%= i%>"><%= i%></option>
+          <%}%>
+        </select>
+        <label for="year">년</label>
+        <select name="month" id="month">
+          <%for(let i=1; i < 13; i++){%>
+          <option value="<%= i%>"><%= i%></option>
+          <%}%>
+        </select>
+        <label for="month">월</label>
+        <select name="date" id="date">
+          <%for(let i=1; i < 32; i++){%>
+          <option value="<%= i%>"><%= i%></option>
+          <%}%>
+        </select>
+        <label for="date">일</label>
+      </fieldset>
+      <br />
+      <fieldset>
+        <legend>관심사</legend>
+        <input type="checkbox" value="trip" name="interest" />
+        <label>여행</label>
+        <input type="checkbox" value="fashion" name="interest" />
+        <label>패션</label>
+        <input type="checkbox" value="food" name="interest" />
+        <label>음식</label>
+      </fieldset>
+      <br />
+      <fieldset>
+        <legend>기타</legend>
+        <div>
+          <label>좋아하는 색상</label>
+          <input type="color" name="color" />
+        </div>
+        <div>
+          <label>좋아하는 숫자</label>
+          <input type="number" name="number" />
+        </div>
+      </fieldset>
+      <br />
+      <button>회원가입</button>
+    </form>
+  </body>
 </html>
