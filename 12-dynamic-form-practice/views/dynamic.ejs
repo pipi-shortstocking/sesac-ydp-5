@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>실습</title>
 
+    <!-- jquery cdn -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
+
     <!-- axios cdn -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
@@ -81,7 +88,7 @@
           value="travel"
           checked
         />
-        <label for="travle">여행</label>
+        <label for="travel">여행</label>
         <input type="checkbox" name="hobby" id="fashion" value="fashion" />
         <label for="fashion">패션</label>
         <input type="checkbox" name="hobby" id="food" value="food" />
@@ -89,7 +96,9 @@
       </fieldset>
       <br />
 
-      <button type="button" onClick="axiosGet();">회원가입</button>
+      <button type="button" onClick="axiosGet();">회원가입(axios)</button>
+      <button type="button" onClick="ajaxGet();">회원가입(ajax)</button>
+      <button type="button" onClick="fetchsGet();">회원가입(fetch)</button>
     </form>
 
     <!-- 동적 폼 전송 결과를 보여줄 곳 -->
@@ -144,6 +153,41 @@
           resultBox1.textContent = `알 수 없는 에러 발생! 다시 시도해주세요~`;
           console.log("Error!", error);
         }
+      }
+
+      // 선택 실습
+      function ajaxGet() {
+        console.log("ajaxGet 함수 호출!");
+
+        const form = document.forms["register"];
+        const data = {
+          name: form.name.value,
+        };
+
+        $.ajax({
+          type: "get",
+          url: "/ajax",
+          data: data,
+          success: (data) => {
+            console.log(data);
+            if (data.name) {
+              resultBox1.textContent = `${data.name}님 환영합니다! 가입이 완료되었습니다.🎉`;
+            } else {
+              resultBox1.textContent = `이름은 필수 값입니다!`;
+            }
+          },
+        });
+      }
+
+      function fetchGet() {
+        console.log("fetcGet 함수 호출!");
+
+        const form = document.forms["register"];
+
+        fetch(`/fetch?name=${form.name.value}`).then((response) => {
+          console.log(response);
+          return response.json();
+        });
       }
 
       // 실습 2
