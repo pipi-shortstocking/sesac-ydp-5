@@ -234,7 +234,24 @@
       }
 
       // 선택 실습
-      function ajaxPost() {}
+      function ajaxPost() {
+        console.log("ajaxPost 함수 호출!");
+
+        const form = document.forms["login"];
+        const data = {
+          id: form.id.value,
+          pw: form.pw.value,
+        };
+
+        $.ajax({
+          type: "post",
+          url: "/ajax",
+          data: data,
+          success: (data) => {
+            console.log(data);
+          },
+        });
+      }
     </script>
   </body>
 </html>
