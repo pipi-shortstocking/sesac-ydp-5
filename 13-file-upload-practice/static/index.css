@@ -1,0 +1,8 @@
+/* TODO: CSS 파일 정의 */
+body {
+  /* background-color: black; */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
