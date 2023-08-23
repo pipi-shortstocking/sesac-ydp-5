@@ -13,7 +13,7 @@ const uploadDetail = multer({
     filename(req, file, done) {
       const ext = path.extname(file.originalname);
       const id = req.body.id;
-      done(null, id + ext);
+      done(null, id + Date.now() + ext);
     },
   }),
   limits: { fileSizeL: 5 * 1024 * 1024 },
