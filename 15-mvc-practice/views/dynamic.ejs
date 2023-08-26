@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MVC 실습</title>
+
+    <!-- axios cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+      p {
+        color: gray;
+        font-size: 12px;
+      }
+
+      div.result2-success {
+        font-weight: 700;
+        color: blue;
+      }
+
+      div.result2-fail {
+        font-weight: 700;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>실습2. axios post 로그인</h2>
+    <p>
+      (참고) app.js에 저장한 아이디는 banana이고, 비밀번호는 4321입니다.
+      아이디와 비밀번호가 일치할 때와 불일치할 때 어떻게 다른지 확인해보세요!!
+    </p>
+    <form name="login">
+      <label for="id">아이디</label>
+      <input type="text" id="id" name="id" required />
+      <label for="pw">비밀번호</label>
+      <input type="password" id="pw" name="pw" required />
+      <button type="button" onClick="axiosPost();">로그인</button>
+    </form>
+
+    <!-- 동적 폼 전송 결과를 보여줄 곳 -->
+    <div class="result2-success"></div>
+    <div class="result2-fail"></div>
+
+    <script>
+      const resultBox_Success = document.querySelector("div.result2-success");
+      const resultBox_Fail = document.querySelector("div.result2-fail");
+
+      async function axiosPost() {
+        console.log("axiosPost 함수 호출!");
+
+        const form = document.forms["login"];
+        const data = {
+          id: form.id.value,
+          pw: form.pw.value,
+        };
+
+        try {
+          const response = await axios({
+            method: "post",
+            url: "/axios",
+            data: data,
+          });
+          const { userid, permission } = response.data;
+          //   console.log(permission, userid);
+
+          if (permission === true) {
+            resultBox_Success.textContent = `${userid}님! 로그인 성공😁`;
+            resultBox_Fail.textContent = "";
+          } else if (permission === false) {
+            resultBox_Fail.textContent = `아이디 또는 패스워드 오류😥`;
+            resultBox_Success.textContent = "";
+          }
+        } catch (error) {
+          console.log("Error!", error);
+        }
+      }
+    </script>
+  </body>
+</html>
