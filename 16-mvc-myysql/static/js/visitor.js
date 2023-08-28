@@ -17,8 +17,19 @@ function createVisitor() {
       comment: form.comment.value,
     },
   }).then((res) => {
-    console.log("post /visitor 요청에 대한 응답", res);
+    console.log("post /visitor 요청에 대한 응답", res.data);
+    const { id, name, comment } = res.data;
+    // 방금 추가한 방명록 정보를 보이기
+    // : newVisitor 변수에 tr 요소를 생성하고, tbody의 맨마지막 요소로 추가
+    const newVisitor = `
+        <tr id = "tr_${id}">
+            <td>${id}</td>
+            <td>${name}</td>
+            <td>${comment}</td>
+            <td><button type="button">수정</button></td>
+            <td><button type="button">삭제</button></td>
+        </tr>
+    `;
+    tbody.insertAdjacentHTML("beforeend", newVisitor); // $('tbody').append(newVisitor);
   });
-
-  // res.id, name, comment
 }

@@ -22,7 +22,7 @@
       }
     </style>
 
-    <script src="/static/js/visitor.js"></script>
+    <!-- <script defer src="/static/js/visitor.js"></script> defer가 파싱을 이후로 미뤄줌 (defer를 안쓸거면 body 끝에 입력) -->
   </head>
   <body>
     <form name="visitor-form">
@@ -63,5 +63,6 @@
         <% } %>
       </tbody>
     </table>
+    <script src="/static/js/visitor.js"></script>
   </body>
 </html>

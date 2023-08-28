@@ -38,7 +38,7 @@ exports.postVisitor = (data, callback) => {
   // callback: query 실행 후 호출할 함수
 
   conn.query(
-    `insert into visitor values(null, ${data.name}, ${data.comment})`,
+    `insert into visitor values(null, '${data.name}', '${data.comment}')`, // 따옴표로 감싸지 않으면 숫자만 입력 가능
     (err, rows) => {
       if (err) {
         throw err;

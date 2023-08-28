@@ -22,6 +22,6 @@ exports.postVisitor = (req, res) => {
 
   Visitor.postVisitor(req.body, (insertId) => {
     console.log("controller >>", req.body);
-    res.send({ id: insertId, name: req.body.name, comment: req.body.comment });
+    res.send({ id: insertId, name: name, comment: comment });
   });
 };
