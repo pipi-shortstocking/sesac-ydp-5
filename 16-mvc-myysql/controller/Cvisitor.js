@@ -5,6 +5,13 @@ exports.main = (req, res) => {
 };
 
 exports.getVisitors = (req, res) => {
-  console.log(Visitor.getVisitors());
-  res.render("visitor", { data: Visitor.getVisitors() });
+  // [before]
+  // res.render("visitor", { data: Visitor.getVisitors() });
+
+  // [after]
+  // console.log(Visitors.getVisitors());
+  Visitor.getVisitors((result) => {
+    console.log("controller >>", result);
+    res.render("visitor", { data: result });
+  });
 };
