@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // TODO: 라우팅 분리
-const indexRouter = require("./routes");
+const indexRouter = require("./routes/"); // ./routes/user.js
 app.use("/", indexRouter);
 
 // TODO: 404 에러 처리
