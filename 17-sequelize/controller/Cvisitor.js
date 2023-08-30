@@ -96,5 +96,5 @@ exports.updateVisitor = async (req, res) => {
       where: { id: req.body.id },
     }
   );
-  res.send({ isUpdate: true });
+  res.send({ isUpdated: true });
 };
