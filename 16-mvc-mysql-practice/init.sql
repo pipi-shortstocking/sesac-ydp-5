@@ -2,15 +2,21 @@
 SHOW databases;
 
 -- codingon 데이터베이스 선택
-USE codingon;
+USE sesac;
 
 -- codingon 데이터베이스의 테이블 목록 확인
 SHOW tables;
 
 -- 이미 user 테이블이 있다면 기존 테이블 지움
-DROP TABLE IF EXISTS user;
+DROP TABLE user;
 
 -- TODO: user 데이터베이스 생성
+CREATE TABLE user (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	userid VARCHAR(20) NOT NULL,
+    name VARCHAR(10) NOT NULL,
+    pw VARCHAR(20) NOT NULL
+);
 
 -- user 데이블 데이터 추가
 INSERT INTO user (userid, name, pw) VALUES ('sean', 'sean', '1234');
