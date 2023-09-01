@@ -19,7 +19,7 @@ exports.signin = (req, res) => {
 
 exports.postSignin = (req, res) => {
   User.postSignin(req.body, (result) => {
-    console.log("result >> ", result);
+    console.log("result >> ", result); // User.js로부터 콜백인자가 제대로 전달되는지 확인
 
     if (result.length > 0) {
       res.send(true);

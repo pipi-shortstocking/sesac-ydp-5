@@ -30,7 +30,7 @@ exports.postSignin = (data, callback) => {
       if (err) {
         throw err;
       }
-      console.log("login >> ", rows);
+      console.log("login >> ", rows); // Cuers.js의 console.log("result >> ", result)와 동일한 결과 출력
       callback(rows);
     }
   );

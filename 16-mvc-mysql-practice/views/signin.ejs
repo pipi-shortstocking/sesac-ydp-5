@@ -36,13 +36,16 @@
             userid: form.userid.value,
             pw: form.pw.value,
           },
-        })
-          .then((res) => {
-            console.log("signin >> ", res);
-          })
-          .then((data) => {
-            console.log("success >> ", data);
-          });
+        }).then((res) => {
+          console.log("success >> ", res.data); // Cuser.js로부터 res.send 값이 제대로 전달되는지 확인 (회원 정보가 있으면 T, 없으면 F)
+
+          if (res.data) {
+            alert("로그인 성공");
+          }
+        });
+        // .then((data) => {
+        //   console.log("data 확인 >> ", data); // data 값이 undefined로 뜸
+        // });
       }
     </script>
   </body>
