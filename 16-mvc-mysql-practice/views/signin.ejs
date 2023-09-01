@@ -41,6 +41,10 @@
 
           if (res.data) {
             alert("로그인 성공");
+            // profile 창 띄우기
+          } else {
+            alert("로그인 실패");
+            form.reset();
           }
         });
         // .then((data) => {
