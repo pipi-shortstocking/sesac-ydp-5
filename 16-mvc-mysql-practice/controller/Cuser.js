@@ -29,6 +29,10 @@ exports.postSignin = (req, res) => {
   });
 };
 
+exports.postProfile = (req, res) => {
+  res.render("profile");
+};
+
 exports.main = (req, res) => {
   res.render("index");
 };

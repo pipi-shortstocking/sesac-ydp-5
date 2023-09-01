@@ -42,14 +42,15 @@
           if (res.data) {
             alert("로그인 성공");
             // profile 창 띄우기
+            const form_info = document.forms["form_info"];
+            // hidden 상태의 form_info에 userid 정보 저장하기
+            form_info.userid.value = form.userid.value;
+            form_info.submit(); // submit button을 누른 것과 동일한 효과
           } else {
             alert("로그인 실패");
             form.reset();
           }
         });
-        // .then((data) => {
-        //   console.log("data 확인 >> ", data); // data 값이 undefined로 뜸
-        // });
       }
     </script>
   </body>
