@@ -30,7 +30,17 @@ exports.postSignin = (req, res) => {
 };
 
 exports.postProfile = (req, res) => {
-  res.render("profile");
+  User.postProfile(req.body.userid, (result) => {
+    console.log("profile info >> ", result);
+    res.render("profile", { data: result[0] });
+  });
+};
+
+exports.editProfile = (req, res) => {
+  User.editProfile(req.body, (result) => {
+    console.log("changedProfile >> ", result);
+    res.send(true);
+  });
 };
 
 exports.main = (req, res) => {

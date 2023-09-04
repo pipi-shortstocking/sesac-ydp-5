@@ -35,3 +35,28 @@ exports.postSignin = (data, callback) => {
     }
   );
 };
+
+exports.postProfile = (userid, callback) => {
+  conn.query(
+    `SELECT * FROM user WHERE userid = '${userid}' LIMIT 1`,
+    (err, rows) => {
+      if (err) {
+        throw err;
+      }
+      console.log("profile >> ", rows);
+      callback(rows);
+    }
+  );
+};
+
+exports.editProfile = (data, callback) => {
+  conn.query(
+    `UPDATE user SET userid = '${data.userid}', pw = '${data.pw}', name = '${data.name}' WHERE id = '${data.id}'`,
+    (err, rows) => {
+      if (err) {
+        throw err;
+      }
+      callback();
+    }
+  );
+};
