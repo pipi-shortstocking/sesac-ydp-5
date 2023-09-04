@@ -10,5 +10,7 @@ router.get("/signin", controller.signin); // 로그인 페이지 보이기
 router.post("/signin", controller.postSignin); // login
 
 router.post("/profile", controller.postProfile); // 회원 정보 페이지 보이기
+router.post("/profile/edit", controller.editProfile);
+router.post("/profile/delete", controller.deleteProfile);
 
 module.exports = router;

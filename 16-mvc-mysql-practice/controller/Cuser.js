@@ -37,9 +37,15 @@ exports.postProfile = (req, res) => {
 };
 
 exports.editProfile = (req, res) => {
-  User.editProfile(req.body, (result) => {
-    console.log("changedProfile >> ", result);
+  User.editProfile(req.body, () => {
     res.send(true);
+  });
+};
+
+exports.deleteProfile = (req, res) => {
+  User.deleteProfile(req.body.id, () => {
+    res.send(true);
+    // res.render("index"); - 이유 물어보기 (이 부분이 작업순서가 앞인 것 같은데 왜 render가 안되는 것인지)
   });
 };
 

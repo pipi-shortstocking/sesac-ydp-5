@@ -60,3 +60,12 @@ exports.editProfile = (data, callback) => {
     }
   );
 };
+
+exports.deleteProfile = (id, callback) => {
+  conn.query(`DELETE FROM user WHERE id = '${id}'`, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    callback();
+  });
+};
