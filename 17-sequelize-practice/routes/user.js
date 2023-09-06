@@ -6,5 +6,6 @@ const router = express.Router();
 router.get("/", controller.main);
 
 // 회원가입
+router.get("/signup", controller.signup);
 
 module.exports = router;
