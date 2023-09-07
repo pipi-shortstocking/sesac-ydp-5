@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('include/include', { title: '회원 정보' })%>
+  <body>
+    <h1>회원 정보</h1>
+
+    <a href="/user">HOME</a>
+    <p>ID 수정 불가능, Password, Name 수정 가능</p>
+
+    <form name="form_profile">
+      <label for="userid">ID</label>
+      <input type="text" id="userid" name="userid" readonly /> <br />
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" /> <br />
+      <label for="Name">Name</label>
+      <input type="name" id="name" name="name" /> <br />
+
+      <button type="button" onclick="profileEdit()">Edit</button>
+      <button type="button" onclick="profileDelete()">Delete</button>
+    </form>
+
+    <script></script>
+  </body>
+</html>

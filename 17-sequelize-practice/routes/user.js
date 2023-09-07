@@ -15,4 +15,7 @@ router.get("/signin", controller.signin);
 // 로그인
 router.post("/signin", controller.postSignin);
 
+// 회원 정보 화면
+router.post("/profile", controller.profile);
+
 module.exports = router;

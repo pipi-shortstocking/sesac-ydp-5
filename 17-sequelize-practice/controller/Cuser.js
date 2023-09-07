@@ -33,3 +33,7 @@ exports.postSignin = async (req, res) => {
   // console.log(result);
   res.send(result);
 };
+
+exports.profile = (req, res) => {
+  res.render("profile");
+};
