@@ -3,6 +3,18 @@
   <%- include('include/include', { title: '회원가입' })%>
   <body>
     <h1>회원가입</h1>
-    <form name="form_register"></form>
+    <form name="form_register">
+      <label for="userid">ID</label>
+      <input type="text" id="userid" name="userid" required /><br />
+      <label for="password">Password</label>
+      <input type="passwords" id="password" name="password" required /><br />
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required /><br />
+      <button type="button" onclick="register()">Register</button>
+    </form>
+
+    <a href="/user/signin">Login</a>
+
+    <script></script>
   </body>
 </html>

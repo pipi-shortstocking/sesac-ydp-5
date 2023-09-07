@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('include/include', {title: '로그인'})%>
+  <body>
+    <h1>로그인</h1>
+    <form name="form_login">
+      <label for="userid">ID</label>
+      <input type="text" id="userid" name="userid" required /><br />
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required /><br />
+      <button type="button" onclick="login()">Login</button>
+    </form>
+
+    <a href="/user/signup">Register</a>
+  </body>
+</html>

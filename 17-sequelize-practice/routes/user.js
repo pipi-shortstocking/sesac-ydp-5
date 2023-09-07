@@ -8,4 +8,7 @@ router.get("/", controller.main);
 // 회원가입
 router.get("/signup", controller.signup);
 
+// 로그인
+router.get("/signin", controller.signin);
+
 module.exports = router;
