@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const PORT = 8000;
+const { sequelize } = require("./models");
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
@@ -14,6 +15,14 @@ app.use("/user", userRouter);
 //   res.render("404");
 // });
 
-app.listen(PORT, () => {
-  console.log(`http://localhost:${PORT}/user`);
-});
+sequelize
+  .sync({ force: false })
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log("Database connection succeeded!");
+      console.log(`http://localhost:${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error(error);
+  });
