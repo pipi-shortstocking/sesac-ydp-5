@@ -7,7 +7,7 @@
       <label for="userid">ID</label>
       <input type="text" id="userid" name="userid" required /><br />
       <label for="password">Password</label>
-      <input type="passwords" id="password" name="password" required /><br />
+      <input type="password" id="password" name="password" required /><br />
       <label for="name">Name</label>
       <input type="text" id="name" name="name" required /><br />
       <button type="button" onclick="register()">Register</button>
@@ -15,6 +15,25 @@
 
     <a href="/user/signin">Login</a>
 
-    <script></script>
+    <script>
+      function register() {
+        const form = document.forms["form_register"];
+
+        axios({
+          method: "POST",
+          url: "/user/signup",
+          data: {
+            userid: form.userid.value,
+            pw: form.password.value,
+            name: form.name.value,
+          },
+        }).then((res) => {
+          // const { userid, pw, name } = res.data;
+          alert("회원가입 성공");
+
+          document.location.href = "/user/signin";
+        });
+      }
+    </script>
   </body>
 </html>

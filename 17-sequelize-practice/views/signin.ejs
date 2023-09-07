@@ -3,6 +3,10 @@
   <%- include('include/include', {title: '로그인'})%>
   <body>
     <h1>로그인</h1>
+    <form action="/user/profile" name="form_info" method="POST">
+      <input type="hidden" name="userid" />
+    </form>
+
     <form name="form_login">
       <label for="userid">ID</label>
       <input type="text" id="userid" name="userid" required /><br />
@@ -12,5 +16,33 @@
     </form>
 
     <a href="/user/signup">Register</a>
+
+    <script>
+      function login() {
+        const form = document.forms["form_login"];
+
+        axios({
+          method: "POST",
+          url: "/user/signin",
+          data: {
+            userid: form.userid.value,
+            pw: form.password.value,
+          },
+        }).then((res) => {
+          console.log("로그인 정보 >> ", res.data);
+
+          if (res.data) {
+            alert("로그인 성공");
+
+            const form_info = document.forms["form_info"];
+            form_info.userid.value = form.userid.value;
+            form_info.submit();
+          } else {
+            alert("로그인 실패");
+            form.reset();
+          }
+        });
+      }
+    </script>
   </body>
 </html>

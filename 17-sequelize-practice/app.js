@@ -20,7 +20,7 @@ sequelize
   .then(() => {
     app.listen(PORT, () => {
       console.log("Database connection succeeded!");
-      console.log(`http://localhost:${PORT}`);
+      console.log(`http://localhost:${PORT}/user`);
     });
   })
   .catch((error) => {
