@@ -63,3 +63,13 @@ exports.editProfile = async (req, res) => {
   );
   res.send({ isUpdate: true });
 };
+
+exports.deleteProfile = async (req, res) => {
+  // console.log(req.body);
+
+  const result = await User.destroy({
+    where: { id: req.body.id },
+  });
+
+  res.send({ isDeleted: true });
+};

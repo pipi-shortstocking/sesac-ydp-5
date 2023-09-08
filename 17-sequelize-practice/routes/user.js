@@ -20,6 +20,6 @@ router.post("/profile", controller.postProfile);
 // 회원 정보 편집
 router.post("/profile/edit", controller.editProfile);
 // 회원 정보 삭제
-// router.post("/profile/delete", controller.deleteProfile);
+router.post("/profile/delete", controller.deleteProfile);
 
 module.exports = router;

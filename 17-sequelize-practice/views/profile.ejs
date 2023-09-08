@@ -51,9 +51,22 @@
         });
       }
 
-      // function profileDelete() {
+      function profileDelete() {
+        const form = document.forms["form_profile"];
 
-      // }
+        axios({
+          method: "POST",
+          url: `/user/profile/delete`,
+          data: {
+            id: form.id.value,
+          },
+        }).then((res) => {
+          console.log(res.data, " 삭제 완료");
+          alert("회원 탈퇴 성공!");
+
+          document.location.href = "/user";
+        });
+      }
     </script>
   </body>
 </html>
