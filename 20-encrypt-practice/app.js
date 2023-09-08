@@ -14,7 +14,7 @@ app.use(express.json());
 // TODO: express-session 미들웨어 등록
 app.use(
   session({
-    secret: "MySessionSecreyKey",
+    secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: true,
     cookie: {

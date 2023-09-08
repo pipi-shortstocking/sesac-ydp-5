@@ -2,7 +2,7 @@
 
 const User = (Sequelize, DataTypes) => {
   const model = Sequelize.define(
-    "user",
+    "User",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -30,7 +30,7 @@ const User = (Sequelize, DataTypes) => {
     }
   );
 
-  return User;
+  return model;
 };
 
 module.exports = User;
