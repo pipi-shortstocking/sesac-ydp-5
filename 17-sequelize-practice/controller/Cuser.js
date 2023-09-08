@@ -34,6 +34,32 @@ exports.postSignin = async (req, res) => {
   res.send(result);
 };
 
-exports.profile = (req, res) => {
-  res.render("profile");
+exports.postProfile = async (req, res) => {
+  // console.log(req.body.userid);
+
+  const result = await User.findOne({
+    where: { userid: req.body.userid },
+  });
+  // console.log(result);
+
+  res.render("profile", {
+    id: result.id,
+    userid: result.userid,
+    password: result.pw,
+    name: result.name,
+  });
+};
+
+exports.editProfile = async (req, res) => {
+  // console.log(req.body);
+
+  const result = await User.update(
+    {
+      userid: req.body.userid,
+      pw: req.body.pw,
+      name: req.body.name,
+    },
+    { where: { id: req.body.id } }
+  );
+  res.send({ isUpdate: true });
 };

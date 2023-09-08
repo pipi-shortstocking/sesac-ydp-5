@@ -8,17 +8,52 @@
     <p>ID 수정 불가능, Password, Name 수정 가능</p>
 
     <form name="form_profile">
+      <input type="hidden" id="id" name="id" value="<%=id%>" />
       <label for="userid">ID</label>
-      <input type="text" id="userid" name="userid" readonly /> <br />
+      <input
+        type="text"
+        id="userid"
+        name="userid"
+        value="<%= userid%>"
+        readonly
+      />
+      <br />
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" /> <br />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        value="<%=password%>"
+      />
+      <br />
       <label for="Name">Name</label>
-      <input type="name" id="name" name="name" /> <br />
+      <input type="name" id="name" name="name" value="<%= name%>" /> <br />
 
       <button type="button" onclick="profileEdit()">Edit</button>
       <button type="button" onclick="profileDelete()">Delete</button>
     </form>
 
-    <script></script>
+    <script>
+      function profileEdit() {
+        const form = document.forms["form_profile"];
+
+        axios({
+          method: "POST",
+          url: `/user/profile/edit`,
+          data: {
+            id: form.id.value,
+            userid: form.userid.value,
+            pw: form.password.value,
+            name: form.name.value,
+          },
+        }).then((res) => {
+          console.log(res.data);
+        });
+      }
+
+      // function profileDelete() {
+
+      // }
+    </script>
   </body>
 </html>
