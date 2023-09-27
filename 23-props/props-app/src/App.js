@@ -9,6 +9,9 @@ import Book from './Book';
 import Text from './Text';
 
 function App() {
+  const con = () => {
+    console.log('콘솔 띄우기 성공!');
+  };
   return (
     <div className="App">
       {/* <FunctionComponent name="새싹" />
@@ -34,7 +37,7 @@ function App() {
         type="자기계발서"
       />
       {/* 3 */}
-      <Text text="App 컴포넌트에서 넘겨준 text props입니다." />
+      <Text text="App 컴포넌트에서 넘겨준 text props입니다." valid={con} />
     </div>
   );
 }
