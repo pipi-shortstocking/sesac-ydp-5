@@ -172,3 +172,18 @@ for (let key in me) {
   // key: key
   // value: me[key]
 }
+
+//////////////////////////
+// reduce()
+// : 배열의 각 요소에 대해서 주어진 리듀서(reducer) 함수를 실행하고, 하나의 결과값 반환
+
+// reduce((arr, cur) => { ... }, initValue)
+// - acc : 누적되는 값
+// - cur : 현재 요소
+
+const numbers = [1, 2, 3, 4, 5];
+const initialValue = 100;
+const result = numbers.reduce((accumulater, currentValue) => {
+  return accumulater + currentValue;
+}, initialValue);
+console.log(result); // 115
