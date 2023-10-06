@@ -1,5 +1,6 @@
 import Practice from './Practice';
 import Excercise from './Practice';
+import Practice2 from './Practice2';
 import RefSample1 from './RefSample1';
 import RefSample2 from './RefSample2';
 import RefSample3 from './RefSample3';
@@ -25,6 +26,9 @@ function App() {
       <hr />
 
       <Practice />
+      <hr />
+
+      <Practice2 />
     </div>
   );
 }
