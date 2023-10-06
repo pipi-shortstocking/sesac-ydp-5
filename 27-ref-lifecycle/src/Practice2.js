@@ -52,6 +52,7 @@ export default function Practice2() {
     const searchResult = comments.filter((cmt) => {
       // cmt: {title: xxx, writer: xxx}
 
+      // includes에 빈 값('')이 인자로 들어가면 true가 반환됨 -> 빈 값이 들어올 상황을 막아야 함
       if (!cmt[searchType].includes(search)) {
         // 검색 결과가 없다면; null
         return null;
