@@ -1,3 +1,5 @@
+import LifeCycleClass from './LifeCycleClass';
+import LifeCycleFunc from './LifeCycleFunc';
 import Practice from './Practice';
 import Excercise from './Practice';
 import Practice2 from './Practice2';
@@ -29,6 +31,12 @@ function App() {
       <hr />
 
       <Practice2 />
+      <hr />
+
+      <LifeCycleFunc />
+      <hr />
+
+      <LifeCycleClass />
     </div>
   );
 }
