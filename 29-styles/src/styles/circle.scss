@@ -1,0 +1,19 @@
+@import './utils.scss';
+@import './variables.scss';
+
+.circle {
+  @include circle(70px);
+
+  &.circle1 {
+    background-color: $pink;
+    @include move(ten);
+  }
+  &.circle2 {
+    background-color: $yellow;
+    @include move(twenty);
+  }
+  &.circle3 {
+    background-color: $green;
+    @include move(thirty);
+  }
+}

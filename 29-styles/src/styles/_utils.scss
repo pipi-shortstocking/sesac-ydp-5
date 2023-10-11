@@ -2,3 +2,70 @@
   width: $size;
   height: $size;
 }
+
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+}
+
+@mixin move($size-name) {
+  animation-name: $size-name;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes ten {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(100px) translateY(0);
+  }
+  50% {
+    transform: translateX(100px) translateY(100px);
+  }
+  75% {
+    transform: translateX(0) translateY(100px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes twenty {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(200px) translateY(0);
+  }
+  50% {
+    transform: translateX(200px) translateY(200px);
+  }
+  75% {
+    transform: translateX(0) translateY(200px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes thirty {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(300px) translateY(0);
+  }
+  50% {
+    transform: translateX(300px) translateY(300px);
+  }
+  75% {
+    transform: translateX(0) translateY(300px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
