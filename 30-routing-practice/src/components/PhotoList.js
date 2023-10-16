@@ -13,11 +13,17 @@ export default function PhotoList() {
 
       setPhotoData(res.data.slice(0, 10));
     };
-  });
+
+    getPhotos();
+  }, []);
+
+  // console.log(photoData);
 
   return (
     <div>
-      <Photo />
+      {photoData.map((photo) => (
+        <Photo key={photo.id} photo={photo} />
+      ))}
     </div>
   );
 }

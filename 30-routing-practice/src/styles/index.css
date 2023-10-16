@@ -48,3 +48,15 @@ code {
   background-color: rgb(221, 248, 221);
   height: 100vh;
 }
+
+.PhotoList {
+  background-color: rgb(242, 255, 199);
+}
+
+.PhotoTitle {
+  margin: 0 0 14px;
+}
+
+.Photo {
+  width: 20%;
+}
