@@ -58,3 +58,22 @@ val2 = false;
 val2 = '바이';
 
 // 실습
+type practice = readonly [object, boolean];
+let olimpic_newgame: practice;
+olimpic_newgame = [
+  {
+    name: '쇼트트랙',
+    type: '혼성 계주',
+  },
+  true,
+];
+
+// olimpic_newgame[1] = false; // error
+
+console.log(olimpic_newgame);
+
+// 선택 실습
+let arrA: any[] = [1, true, 'string']; // 어떤 자료형이든 상관 없는 배열
+let arrB = [1, true, 'string']; // 암묵적으로 생성되는 배열
+
+console.log(arrA, arrB);
