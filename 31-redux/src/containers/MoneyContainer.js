@@ -9,8 +9,8 @@ export const MoneyContainer = () => {
   return (
     <Bank
       money={money}
-      onDiposit={() => dispatch(deposit(money))}
-      onWithDraw={() => dispatch(withdraw(money))}
+      onDiposit={(cash) => dispatch(deposit(cash))}
+      onWithDraw={(cash) => dispatch(withdraw(cash))}
     />
   );
 };

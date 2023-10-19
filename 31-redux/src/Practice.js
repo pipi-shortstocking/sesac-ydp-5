@@ -13,18 +13,14 @@ function Practice() {
 }
 
 export const Bank = ({ money, onDiposit, onWithDraw }) => {
-  const [number, setNumber] = useState(0);
+  const [cash, setCash] = useState(0);
 
   return (
     <div>
       <h2>잔액 : {money}원</h2>
-      <input
-        type="number"
-        value={number}
-        onChange={(e) => setNumber(e.target.value)}
-      />
-      <button onClick={onDiposit}>입금</button>
-      <button onClick={onWithDraw}>출금</button>
+      <input type="text" onChange={(e) => setCash(e.target.value)} />
+      <button onClick={() => onDiposit(parseInt(cash))}>입금</button>
+      <button onClick={() => onWithDraw(parseInt(cash))}>출금</button>
     </div>
   );
 };

@@ -1,15 +1,16 @@
 const DEPOSIT = 'bank/deposit';
 const WITHDRAW = 'bank/withdraw';
 
-export const deposit = (money) => ({ type: DEPOSIT, payload: money });
-export const withdraw = (money) => ({ type: WITHDRAW, payload: money });
+export const deposit = (payload) => ({ type: DEPOSIT, payload });
+export const withdraw = (payload) => ({ type: WITHDRAW, payload });
 
 const initialState = {
   money: 0,
 };
 
 const moneyReducer = (state = initialState, action) => {
-  console.log(action.payload);
+  // console.log(action.payload);
+  // console.log('money > ', state.money);
 
   switch (action.type) {
     case DEPOSIT:
@@ -17,7 +18,7 @@ const moneyReducer = (state = initialState, action) => {
     case WITHDRAW:
       return { money: state.money - action.payload };
     default:
-      return state;
+      return { money: state.money };
   }
 };
 
