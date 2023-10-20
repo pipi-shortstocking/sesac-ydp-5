@@ -5,6 +5,6 @@ import { change } from '../store/isVisibleReducer';
 export const ChangeContainer = () => {
   const isVisible = useSelector((state) => state.isVisible);
   const dispatch = useDispatch();
-
+  console.log(isVisible);
   return <Box4 isVisible={isVisible} onChange={() => dispatch(change())} />;
 };

@@ -44,11 +44,12 @@ export const Box3 = () => {
     <div className="Box">
       <h2>Box3</h2>
       <Box4Container />
+      <ChangeContainer />
     </div>
   );
 };
 
-export const Box4 = ({ number, onPlus, onMinus }, { isVisible, onChange }) => {
+export const Box4 = ({ number, onPlus, onMinus, isVisible, onChange }) => {
   // const number = useSelector((state) => state.counter.number);
   // const isVisible = useSelector((state) => state.isVisible);
   // const dispatch = useDispatch();
