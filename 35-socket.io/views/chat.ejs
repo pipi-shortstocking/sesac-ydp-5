@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>socket.io 채팅</title>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <style>
+      .chat-list {
+        background-color: rgb(135, 178, 247);
+        display: flex;
+        flex-direction: column;
+        height: 70vh;
+        padding: 7px;
+      }
+      .my-chat,
+      .other-chat {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+
+      .my-chat-content {
+        padding: 8px;
+      }
+
+      .notice {
+        color: rgb(36, 36, 132);
+        font-size: 14px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My Chat</h1>
+
+    <!-- [실습 1] 각 버튼 누를 때 마다 서버로 메세지 보내기 -->
+    <!-- <button onclick="sayHello()">Hello</button>
+    <button onclick="sayStudy()">Study</button>
+    <button onclick="sayBye()">Bye</button>
+    <p id="form-server"></p> -->
+
+    <!-- [실습 3-2] -->
+    <div class="entry-box">
+      <input
+        type="text"
+        id="nickname"
+        placeholder="닉네임"
+        autofocus
+        onkeypress="if(window.event.keyCode==13){join()}"
+      />
+      <button type="button" onclick="join();">입장</button>
+    </div>
+
+    <!-- [실습 2] 채팅 UI -->
+    <main class="chat-box">
+      <div class="chat-list">
+        <!-- 임시 대화 데이터 -->
+        <!-- <div class="my-chat">
+          <div class="my-content">user1 : msg1</div>
+        </div>
+        <div class="other-chat">
+          <div class="other-content">user2 : msg2</div>
+        </div> -->
+      </div>
+
+      <!-- 메세지 전송 영역 -->
+      <select id="nick-list"></select
+      >에게
+      <input
+        type="text"
+        id="message"
+        onkeypress="if(window.event.keyCode==13){send()}"
+      />
+      <button type="button" onclick="send();">전송</button>
+    </main>
+
+    <script>
+      let socket = io.connect(); // 소켓 사용을 위한 객체 생성
+      let myNick; // 내 닉네임
+
+      socket.on('connect', () => {
+        console.log('클라이언트 연결 완료 :: ', socket.id);
+      });
+
+      // [실습 3]
+      socket.on('notice', (msg) => {
+        document
+          .querySelector('.chat-list')
+          .insertAdjacentHTML('beforeend', `<div class="notice">${msg}</div>`);
+      });
+
+      // [실습 3-2] 채팅창 입장 문구 socket.id -> nickname
+      function join() {
+        socket.emit('setNick', document.querySelector('#nickname').value);
+      }
+
+      // [실습 3-2] 채팅창 입장 문구 socket.id -> nickname
+      // 닉네임 중복; alert 띄우기
+      socket.on('error', (data) => {
+        alert(data);
+      });
+
+      // [실습 3-2] 채팅창 입장 문구 socket.id -> nickname
+      // 입장 성공: 닉네임 입력창 비활성화
+      socket.on('entrySuccess', (nick) => {
+        myNick = nick; // 내 닉네임 저장
+        document.querySelector('#nickname').disabled = true; // 인풋 비활성화
+        document.querySelector('.entry-box > button').disabled = true; // 버튼 비활성화
+        document.querySelector('.chat-box').classList.remove('d-done'); // 채팅창 보이기
+      });
+
+      // [실습 3-2] 채팅창 입장 문구 socket.id -> nickname
+      // 유저 목록 업데이트 (select 박스의 option 태그 개수 변경)
+      socket.on('updateNicks', (nickObjs) => {
+        // nickObjs: {socket.id: nick1, socket.id: nick2, ... }
+
+        let options = `<option value="all">전체</option>`;
+
+        // TODO: nickObjs 반복 돌아서 option 태그 추가
+        // option 태그의 value 속성 값은 socket.id, option 태그의 컨텐츠는 nick 값
+        for (let key in nickObjs) {
+          options += `<option value="${key}">${nickObjs[key]}</option>`;
+        }
+
+        document.querySelector('#nick-list').innerHTML = options;
+      });
+
+      //   // [실습 1]
+      //   function sayHello() {
+      //     socket.emit('hello', { who: 'client', msg: 'hello' });
+      //     socket.on('helloKr', (data) => {
+      //       console.log(`${data.who} : ${data.msg}`);
+      //       document.querySelector(
+      //         '#form-server'
+      //       ).textContent = `${data.who} : ${data.msg}`;
+      //     });
+      //   }
+
+      //   function sayStudy() {
+      //     socket.emit('study', { who: 'client', msg: 'study' });
+      //     socket.on('studyKr', (data) => {
+      //       console.log(`${data.who} : ${data.msg}`);
+      //       document.querySelector(
+      //         '#form-server'
+      //       ).textContent = `${data.who} : ${data.msg}`;
+      //     });
+      //   }
+
+      //   function sayBye() {
+      //     socket.emit('bye', { who: 'client', msg: 'bye' });
+      //     socket.on('byeKr', (data) => {
+      //       console.log(`${data.who} : ${data.msg}`);
+      //       document.querySelector(
+      //         '#form-server'
+      //       ).textContent = `${data.who} : ${data.msg}`;
+      //     });
+      //   }
+
+      // [실습 2]
+      function send() {
+        let message = document.querySelector('#msg');
+        socket.emit('client-send', { msg: `${message.value}` });
+        console.log(message.value);
+        message.value = '';
+        socket.on('sendKr', (data) => {
+          document
+            .querySelector('.my-content')
+            .insertAdjacentHTML(
+              'beforeend',
+              `<div class="my-chat">${data.msg}</div>`
+            );
+        });
+      }
+    </script>
+  </body>
+</html>
