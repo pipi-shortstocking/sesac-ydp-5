@@ -88,7 +88,29 @@ io.on('connection', (socket) => {
   // send 이벤트를 받아서
   // 모두에게 newMessage 이벤트로 {닉네임, 입력창내용} 데이터를 전송
   socket.on('send', (data) => {
-    io.emit('newMessage', { myNick: data.myNick, msg: data.msg });
+    // { dm: 'all', myNick: 'sfsf', msg: 'dsfdf' }
+
+    // [실습 5]
+    // dm인지 아닌지 구분해서
+    // io.to(소켓 아이디).emit(event_name, data): 소켓아이디에 해당하는 클라이언트에게만 전송
+    if (data.dm === 'all') {
+      // '전체' 발송
+      io.emit('newMessage', { myNick: data.myNick, msg: data.msg });
+    } else {
+      // "DM" 발송
+      const sendData = {
+        dm: nickObjs[data.dm],
+        myNick: data.myNick,
+        msg: data.msg,
+      };
+
+      if (socket.id !== data.dm) {
+        io.to(socket.id).emit('newMessage', sendData);
+        io.to(data.dm).emit('newMessage', sendData);
+      } else {
+        io.to(data.dm).emit('newMessage', sendData);
+      }
+    }
   });
 });
 

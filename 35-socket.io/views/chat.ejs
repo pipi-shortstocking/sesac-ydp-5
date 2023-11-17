@@ -38,6 +38,11 @@
         background-color: white;
       }
 
+      /* [실습 5] DM 기능 추가 */
+      .secret-chat div {
+        background-color: pink;
+      }
+
       /* [실습3] 채팅창 입장 안내 문구 */
       .notice {
         text-align: center;
@@ -162,6 +167,8 @@
       function send() {
         // "send" 이벤트 전송 { 닉네임, 입력창 내용 }
         const data = {
+          // 전체: all, 그 외 다른 닉네임: socket.id
+          dm: document.querySelector('#nick-list').value,
           myNick,
           msg: document.querySelector('#message').value,
         };
@@ -180,22 +187,14 @@
 
         if (data.myNick === myNick) {
           // 내가 보낸 메세지
-          // document
-          //   .querySelector('.chat-list')
-          //   .insertAdjacentHTML(
-          //     'beforeEnd',
-          //     `<div class="my-chat"><div>${data.myNick} : ${data.msg}</div></div>`
-          //   );
           div.classList.add('my-chat');
         } else {
-          // 다른 사람이 보낸 메세지
-          // document
-          //   .querySelector('.chat-list')
-          //   .insertAdjacentHTML(
-          //     'beforeEnd',
-          //     `<div class="other-chat"><div>${data.myNick} :${data.msg}</div></div>`
-          //   );
           div.classList.add('other-chat');
+        }
+
+        if (data.dm) {
+          div.classList.add('secret-chat');
+          divChat.textContent = '(속닥 속닥)'; // '(속닥 속닥)'
         }
 
         divChat.textContent = `${data.myNick} : ${data.msg}`;
