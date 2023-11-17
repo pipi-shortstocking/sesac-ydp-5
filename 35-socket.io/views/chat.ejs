@@ -161,37 +161,49 @@
       // [실습 4] 채팅창 메세지 전송 Step1
       function send() {
         // "send" 이벤트 전송 { 닉네임, 입력창 내용 }
-        socket.emit('send', {
-          nickName: myNick,
+        const data = {
+          myNick,
           msg: document.querySelector('#message').value,
-        });
-        document.querySelector('#message').value = '';
+        };
+
+        socket.emit('send', data);
+        document.querySelector('#message').value = ''; // 인풋 초기화
       }
 
       // newMessage 이벤트를 받아서 {닉네임, 입력창내용}
       // 내가 보낸 메세지; 오른쪽
       // 다른 사람이 보낸 메세지; 왼쪽
       socket.on('newMessage', (data) => {
-        console.log(data);
-        if (data.nickName === myNick) {
-          document
-            .querySelector('.chat-list')
-            .insertAdjacentHTML(
-              'beforeEnd',
-              `<div class="my-chat"><div>${data.nickName} : ${data.msg}</div></div>`
-            );
+        let chatList = document.querySelector('.chat-list');
+        let div = document.createElement('div'); // .my-chat or .other-chat
+        let divChat = document.createElement('div'); // 가장 안쪽 div
+
+        if (data.myNick === myNick) {
+          // 내가 보낸 메세지
+          // document
+          //   .querySelector('.chat-list')
+          //   .insertAdjacentHTML(
+          //     'beforeEnd',
+          //     `<div class="my-chat"><div>${data.myNick} : ${data.msg}</div></div>`
+          //   );
+          div.classList.add('my-chat');
         } else {
-          document
-            .querySelector('.chat-list')
-            .insertAdjacentHTML(
-              'beforeEnd',
-              `<div class="other-chat"><div>${data.nickName} :${data.msg}</div></div>`
-            );
+          // 다른 사람이 보낸 메세지
+          // document
+          //   .querySelector('.chat-list')
+          //   .insertAdjacentHTML(
+          //     'beforeEnd',
+          //     `<div class="other-chat"><div>${data.myNick} :${data.msg}</div></div>`
+          //   );
+          div.classList.add('other-chat');
         }
 
+        divChat.textContent = `${data.myNick} : ${data.msg}`;
+        div.append(divChat);
+        chatList.append(div);
+
         // 스크롤바 하단 고정
-        const container = document.querySelector('.chat-list');
-        container.scrollTop = container.scrollHeight;
+        chatList.scrollTop = chatList.scrollHeight;
       });
     </script>
   </body>

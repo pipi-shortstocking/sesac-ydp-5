@@ -88,8 +88,7 @@ io.on('connection', (socket) => {
   // send 이벤트를 받아서
   // 모두에게 newMessage 이벤트로 {닉네임, 입력창내용} 데이터를 전송
   socket.on('send', (data) => {
-    // { nickName: 'aa', msg: 'aaass' }
-    io.emit('newMessage', data);
+    io.emit('newMessage', { myNick: data.myNick, msg: data.msg });
   });
 });
 
